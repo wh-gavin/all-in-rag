@@ -1,12 +1,16 @@
-from unstructured.partition.auto import partition
+#from unstructured.partition.auto import partition
+from unstructured.partition.pdf import partition_pdf
 
 # PDF文件路径
 pdf_path = "../../data/C2/pdf/rag.pdf"
 
 # 使用Unstructured加载并解析PDF文档
-elements = partition(
+elements = partition_pdf(
     filename=pdf_path,
-    content_type="application/pdf"
+    strategy="hi_res",
+    ocr_languages="chi_sim+eng",
+    content_type="application/pdf",
+    hi_res_model_name="yolox"  # 指定模型，如 yolox, detectron2_onnx
 )
 
 # 打印解析结果
